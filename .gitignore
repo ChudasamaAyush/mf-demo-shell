@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+build/
+.rsbuild/
+.angular/
+
+# misc
+.DS_Store
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# editor
+.vscode/
+.idea/
+*.swp
+
+# env
+.env
+.env.local
+.env.*.local
+
+# test
+coverage/
+.nyc_output/
+
+# os
+Thumbs.db

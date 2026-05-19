@@ -1,0 +1,21 @@
+{
+  "name": "mf-demo-shell",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cross-framework Module Federation demo: React host + React remote + Angular remote, deployed independently.",
+  "scripts": {
+    "dev:host": "pnpm --filter host dev",
+    "dev:calendar": "pnpm --filter calendar-remote dev",
+    "dev:reports": "pnpm --filter reports-remote start",
+    "build:host": "pnpm --filter host build",
+    "build:calendar": "pnpm --filter calendar-remote build",
+    "build:reports": "pnpm --filter reports-remote build",
+    "build:all": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@11.1.3"
+}
