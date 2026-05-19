@@ -66,3 +66,88 @@ body {
   color: var(--color-text-muted);
   background: var(--color-surface);
 }
+
+.user-chip {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.user-chip strong {
+  color: var(--color-text);
+}
+
+.user-chip button,
+.user-chip a {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+}
+
+.user-chip button:hover,
+.user-chip a:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.login-form label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.login-form input {
+  font: inherit;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.login-form button[type='submit'] {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  cursor: pointer;
+}
+
+.login-form button[type='submit']:hover {
+  background: var(--color-primary-hover);
+}
+
+.login-error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
