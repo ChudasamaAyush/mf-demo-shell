@@ -8,6 +8,9 @@ build/
 .rsbuild/
 .angular/
 
+# auto-generated MF type artifacts (pulled from remotes at dev/build time)
+@mf-types/
+
 # misc
 .DS_Store
 *.log
