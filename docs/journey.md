@@ -124,6 +124,40 @@ the bundle via dynamic `import()` (the MF path), the loader treats it as ESM
 automatically and this gotcha goes away. The risk is anyone who tries to load it
 via plain `<script>` injection later.
 
+### Why we did *not* use `@angular-architects/module-federation`
+
+The spec assumes Angular CLI's default builder is Webpack 5, which would let
+`@angular-architects/module-federation` plug in cleanly. As of Angular 17 that
+assumption is wrong — `ng new` now defaults to `@angular-devkit/build-angular:application`
+(esbuild-based). `@angular-architects/module-federation` requires the legacy
+Webpack `browser` builder, so adopting it means reverting the builder, which
+costs us esbuild's substantially faster cold-start and HMR.
+
+That cost would only be worth paying if MF on the Angular side bought us
+something cross-framework MF actually needs. It doesn't:
+
+- **No shared deps across the React↔Angular boundary.** Angular ships its own
+  zone.js, RxJS, and Angular runtime; React shares its React/React-DOM only
+  with other React remotes. The singleton-sharing primitive that justifies MF
+  on the React↔React boundary is inert across this one.
+- **The "independent deploy" property comes from URL-based loading, not the
+  MF protocol per se.** The host fetches a known URL on each page load and
+  gets whatever the producer most recently published. Script injection
+  satisfies this just as well as `import()` through a remoteEntry.
+
+The honest pattern for v1 is: register the Angular component as a custom
+element (step 2), and have the host's `ReportsRemote.tsx` inject two
+`<script type="module">` tags pointing at the producer in a `useEffect`,
+then await `customElements.whenDefined('reports-dashboard')` and render
+`<reports-dashboard />`. The deployment story is unchanged: a commit to
+reports-remote rebuilds and republishes its bundle URL; the host picks up
+the new bundle on next page load with no host rebuild.
+
+If a future v2 ships a *second* Angular remote, the share-scope question
+becomes real (do they both load their own Angular runtime, or share one?)
+and `@angular-architects/module-federation` becomes worth the builder
+regression. For one Angular remote, it isn't.
+
 ### What we did *not* test in the spike
 
 - **Cross-origin loading.** The spike serves bundle and host page from the same origin.
