@@ -35,6 +35,7 @@ interface Stat {
     </div>
   `,
   styles: [`
+    :host { color: var(--color-text, #0f172a); }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -46,18 +47,18 @@ interface Stat {
       gap: 8px;
       padding: 8px 12px;
       margin-bottom: 12px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
+      background: var(--color-surface, #f8fafc);
+      border: 1px solid var(--color-border, #e2e8f0);
       border-radius: 6px;
       font-size: 13px;
-      color: #475569;
+      color: var(--color-text-muted, #475569);
     }
     .rd-header strong {
-      color: #0f172a;
+      color: var(--color-text, #0f172a);
     }
     .rd-role {
-      background: #eef2ff;
-      color: #4f46e5;
+      background: color-mix(in srgb, var(--color-primary, #6366f1) 18%, transparent);
+      color: var(--color-primary, #4f46e5);
       font-size: 11px;
       padding: 2px 6px;
       border-radius: 4px;

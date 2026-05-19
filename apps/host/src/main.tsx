@@ -4,6 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import '@mf-demo/design-tokens/tokens.css';
 import './styles.css';
 import { App } from './App';
+import { applyTheme, readTheme } from './theme';
+
+// Apply persisted theme before render so there's no light->dark flash.
+applyTheme(readTheme());
 
 const container = document.getElementById('root');
 if (!container) throw new Error('Root container not found');

@@ -29,6 +29,7 @@
               "src/assets"
             ],
             "styles": [
+              "@mf-demo/design-tokens/tokens.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -91,6 +92,7 @@
               "src/assets"
             ],
             "styles": [
+              "@mf-demo/design-tokens/tokens.css",
               "src/styles.css"
             ],
             "scripts": []

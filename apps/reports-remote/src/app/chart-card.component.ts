@@ -19,11 +19,11 @@ import { CommonModule } from '@angular/common';
   `,
   styles: [`
     .card {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      background: var(--color-surface, #fff);
+      border: 1px solid var(--color-border, #e2e8f0);
+      border-radius: var(--radius-lg, 12px);
+      padding: var(--space-4, 16px);
+      box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
     }
     header {
       display: flex;
@@ -33,23 +33,23 @@ import { CommonModule } from '@angular/common';
     h3 {
       margin: 0;
       font-size: 13px;
-      color: #64748b;
+      color: var(--color-text-muted, #64748b);
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
     .delta {
       font-size: 12px;
-      color: #ef4444;
+      color: var(--color-danger, #ef4444);
     }
     .delta.positive {
-      color: #10b981;
+      color: var(--color-success, #10b981);
     }
     .value {
       font-size: 28px;
       font-weight: 700;
       margin: 8px 0 12px;
-      color: #0f172a;
+      color: var(--color-text, #0f172a);
     }
     .bars {
       display: flex;
@@ -59,7 +59,7 @@ import { CommonModule } from '@angular/common';
     }
     .bar {
       flex: 1;
-      background: #6366f1;
+      background: var(--color-primary, #6366f1);
       border-radius: 2px;
       min-height: 4px;
     }
