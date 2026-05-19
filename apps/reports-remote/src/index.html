@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ReportsRemote</title>
+  <title>Reports Remote (standalone)</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
-  <app-root></app-root>
+<body style="font-family: ui-sans-serif, system-ui, sans-serif; padding: 24px; background: #f8fafc; color: #0f172a;">
+  <h1>Reports Remote · standalone (custom element)</h1>
+  <p style="color: #64748b;">
+    This page mounts the Angular bundle and renders <code>&lt;reports-dashboard&gt;</code> as a Web Component.
+    The same element is what the React host will consume.
+  </p>
+  <reports-dashboard></reports-dashboard>
 </body>
 </html>

@@ -1,6 +1,12 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { createApplication } from '@angular/platform-browser';
+import { createCustomElement } from '@angular/elements';
+import { ReportsDashboardComponent } from './app/reports-dashboard.component';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+createApplication({ providers: [] })
+  .then((app) => {
+    const element = createCustomElement(ReportsDashboardComponent, {
+      injector: app.injector,
+    });
+    customElements.define('reports-dashboard', element);
+  })
+  .catch((err) => console.error('[reports-remote] bootstrap failed', err));
