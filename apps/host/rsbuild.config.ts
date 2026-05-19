@@ -1,8 +1,10 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
+import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
+import mfConfig from './module-federation.config';
 
 export default defineConfig({
-  plugins: [pluginReact()],
+  plugins: [pluginReact(), pluginModuleFederation(mfConfig)],
   html: {
     title: 'MF Demo · Host',
   },
@@ -12,7 +14,7 @@ export default defineConfig({
   },
   source: {
     entry: {
-      index: './src/main.tsx',
+      index: './src/index.tsx',
     },
   },
 });
