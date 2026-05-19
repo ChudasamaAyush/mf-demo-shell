@@ -1,14 +1,30 @@
 [
-  { "id": "a1", "staffId": "s1", "staffName": "Alex",   "clientName": "Jamie L.",  "service": "Haircut",     "startISO": "2026-05-19T09:00:00", "durationMinutes": 45, "status": "booked" },
-  { "id": "a2", "staffId": "s1", "staffName": "Alex",   "clientName": "Morgan T.", "service": "Color",       "startISO": "2026-05-19T11:00:00", "durationMinutes": 90, "status": "booked" },
-  { "id": "a3", "staffId": "s1", "staffName": "Alex",   "clientName": "Pat R.",    "service": "Trim",        "startISO": "2026-05-19T14:00:00", "durationMinutes": 30, "status": "completed" },
-  { "id": "a4", "staffId": "s2", "staffName": "Brooke", "clientName": "Sam K.",    "service": "Manicure",    "startISO": "2026-05-19T10:00:00", "durationMinutes": 60, "status": "booked" },
-  { "id": "a5", "staffId": "s2", "staffName": "Brooke", "clientName": "Riley D.",  "service": "Pedicure",    "startISO": "2026-05-19T13:00:00", "durationMinutes": 60, "status": "booked" },
-  { "id": "a6", "staffId": "s2", "staffName": "Brooke", "clientName": "Quinn P.",  "service": "Gel",         "startISO": "2026-05-19T16:00:00", "durationMinutes": 75, "status": "booked" },
-  { "id": "a7", "staffId": "s3", "staffName": "Casey",  "clientName": "Avery M.",  "service": "Facial",      "startISO": "2026-05-19T09:00:00", "durationMinutes": 60, "status": "completed" },
-  { "id": "a8", "staffId": "s3", "staffName": "Casey",  "clientName": "Taylor N.", "service": "Massage",     "startISO": "2026-05-19T12:00:00", "durationMinutes": 60, "status": "booked" },
-  { "id": "a9", "staffId": "s3", "staffName": "Casey",  "clientName": "Jordan E.", "service": "Wax",         "startISO": "2026-05-19T15:00:00", "durationMinutes": 30, "status": "no-show" },
-  { "id": "a10","staffId": "s4", "staffName": "Devon",  "clientName": "Drew F.",   "service": "Beard trim",  "startISO": "2026-05-19T10:00:00", "durationMinutes": 30, "status": "completed" },
-  { "id": "a11","staffId": "s4", "staffName": "Devon",  "clientName": "Reese G.",  "service": "Haircut",     "startISO": "2026-05-19T13:00:00", "durationMinutes": 45, "status": "booked" },
-  { "id": "a12","staffId": "s4", "staffName": "Devon",  "clientName": "Skyler H.", "service": "Shave",       "startISO": "2026-05-19T17:00:00", "durationMinutes": 30, "status": "booked" }
+  { "id": "a01", "staffId": "s1", "staffName": "Alex",   "clientName": "Jamie L.",   "service": "Haircut",        "startISO": "2026-05-19T09:00:00", "durationMinutes": 45,  "status": "completed" },
+  { "id": "a02", "staffId": "s1", "staffName": "Alex",   "clientName": "Morgan T.",  "service": "Color & Style",  "startISO": "2026-05-19T10:00:00", "durationMinutes": 90,  "status": "completed" },
+  { "id": "a03", "staffId": "s1", "staffName": "Alex",   "clientName": "Pat R.",     "service": "Trim",           "startISO": "2026-05-19T12:00:00", "durationMinutes": 30,  "status": "booked"    },
+  { "id": "a04", "staffId": "s1", "staffName": "Alex",   "clientName": "Logan W.",   "service": "Highlights",     "startISO": "2026-05-19T13:00:00", "durationMinutes": 75,  "status": "booked"    },
+  { "id": "a05", "staffId": "s1", "staffName": "Alex",   "clientName": "Reese B.",   "service": "Beard trim",     "startISO": "2026-05-19T15:00:00", "durationMinutes": 30,  "status": "booked"    },
+  { "id": "a06", "staffId": "s1", "staffName": "Alex",   "clientName": "Kai J.",     "service": "Haircut",        "startISO": "2026-05-19T17:00:00", "durationMinutes": 45,  "status": "booked"    },
+
+  { "id": "a07", "staffId": "s2", "staffName": "Brooke", "clientName": "Sam K.",     "service": "Manicure",       "startISO": "2026-05-19T09:00:00", "durationMinutes": 45,  "status": "completed" },
+  { "id": "a08", "staffId": "s2", "staffName": "Brooke", "clientName": "Riley D.",   "service": "Pedicure",       "startISO": "2026-05-19T10:00:00", "durationMinutes": 60,  "status": "completed" },
+  { "id": "a09", "staffId": "s2", "staffName": "Brooke", "clientName": "Quinn P.",   "service": "Gel set",        "startISO": "2026-05-19T11:30:00", "durationMinutes": 75,  "status": "completed" },
+  { "id": "a10", "staffId": "s2", "staffName": "Brooke", "clientName": "Cameron H.", "service": "Polish change",  "startISO": "2026-05-19T13:00:00", "durationMinutes": 30,  "status": "no-show"   },
+  { "id": "a11", "staffId": "s2", "staffName": "Brooke", "clientName": "Avery J.",   "service": "Full mani-pedi", "startISO": "2026-05-19T14:30:00", "durationMinutes": 90,  "status": "booked"    },
+  { "id": "a12", "staffId": "s2", "staffName": "Brooke", "clientName": "Hayden V.",  "service": "Gel removal",    "startISO": "2026-05-19T16:30:00", "durationMinutes": 30,  "status": "booked"    },
+
+  { "id": "a13", "staffId": "s3", "staffName": "Casey",  "clientName": "Avery M.",   "service": "Deep facial",    "startISO": "2026-05-19T09:00:00", "durationMinutes": 60,  "status": "completed" },
+  { "id": "a14", "staffId": "s3", "staffName": "Casey",  "clientName": "Taylor N.",  "service": "Swedish massage","startISO": "2026-05-19T10:30:00", "durationMinutes": 60,  "status": "completed" },
+  { "id": "a15", "staffId": "s3", "staffName": "Casey",  "clientName": "Jordan E.",  "service": "Brow wax",       "startISO": "2026-05-19T12:00:00", "durationMinutes": 20,  "status": "completed" },
+  { "id": "a16", "staffId": "s3", "staffName": "Casey",  "clientName": "Sage C.",    "service": "Hot stone",      "startISO": "2026-05-19T13:00:00", "durationMinutes": 75,  "status": "booked"    },
+  { "id": "a17", "staffId": "s3", "staffName": "Casey",  "clientName": "Indi K.",    "service": "Facial",         "startISO": "2026-05-19T15:00:00", "durationMinutes": 60,  "status": "booked"    },
+  { "id": "a18", "staffId": "s3", "staffName": "Casey",  "clientName": "Rowan F.",   "service": "Deep tissue",    "startISO": "2026-05-19T16:30:00", "durationMinutes": 60,  "status": "booked"    },
+
+  { "id": "a19", "staffId": "s4", "staffName": "Devon",  "clientName": "Drew F.",    "service": "Beard trim",     "startISO": "2026-05-19T09:00:00", "durationMinutes": 30,  "status": "completed" },
+  { "id": "a20", "staffId": "s4", "staffName": "Devon",  "clientName": "Reese G.",   "service": "Fade",           "startISO": "2026-05-19T10:00:00", "durationMinutes": 45,  "status": "completed" },
+  { "id": "a21", "staffId": "s4", "staffName": "Devon",  "clientName": "Skyler H.",  "service": "Hot shave",      "startISO": "2026-05-19T11:00:00", "durationMinutes": 45,  "status": "cancelled" },
+  { "id": "a22", "staffId": "s4", "staffName": "Devon",  "clientName": "Charlie M.", "service": "Haircut",        "startISO": "2026-05-19T12:30:00", "durationMinutes": 45,  "status": "completed" },
+  { "id": "a23", "staffId": "s4", "staffName": "Devon",  "clientName": "Jules R.",   "service": "Buzz cut",       "startISO": "2026-05-19T14:00:00", "durationMinutes": 30,  "status": "booked"    },
+  { "id": "a24", "staffId": "s4", "staffName": "Devon",  "clientName": "Noor T.",    "service": "Beard sculpt",   "startISO": "2026-05-19T15:30:00", "durationMinutes": 45,  "status": "booked"    },
+  { "id": "a25", "staffId": "s4", "staffName": "Devon",  "clientName": "Emerson P.", "service": "Fade",           "startISO": "2026-05-19T17:00:00", "durationMinutes": 45,  "status": "booked"    }
 ]

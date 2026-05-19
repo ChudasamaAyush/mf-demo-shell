@@ -151,3 +151,176 @@ body {
   border-radius: var(--radius-sm);
   font-size: 13px;
 }
+
+.appt-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: var(--space-4);
+}
+
+.appt-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.appt-panel-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.appt-panel-close {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+}
+
+.appt-panel-close:hover { color: var(--color-text); }
+
+.appt-status {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-bottom: var(--space-3);
+  font-weight: 600;
+}
+
+.appt-status-booked    { background: color-mix(in srgb, var(--color-primary) 18%, transparent); color: var(--color-primary); }
+.appt-status-completed { background: color-mix(in srgb, var(--color-success) 18%, transparent); color: var(--color-success); }
+.appt-status-cancelled { background: color-mix(in srgb, var(--color-text-muted) 22%, transparent); color: var(--color-text-muted); }
+.appt-status-no-show   { background: color-mix(in srgb, var(--color-danger) 18%, transparent); color: var(--color-danger); }
+
+.appt-client {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.appt-service {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.appt-meta {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: 13px;
+}
+
+.appt-meta dt {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.appt-meta dd {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.home { max-width: 980px; }
+
+.home-hero {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  margin-bottom: var(--space-6);
+}
+
+.home-pill {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: var(--space-3);
+  font-weight: 600;
+}
+
+.home-hero h1 {
+  margin: 0 0 var(--space-3);
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.home-hero p {
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-3);
+  font-size: 15px;
+  max-width: 64ch;
+  line-height: 1.55;
+}
+
+.home-greeting {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.home-greeting strong { color: var(--color-text); }
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: transform 0.06s ease, box-shadow 0.06s ease, border-color 0.06s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.home-card h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.home-card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.home-card-icon {
+  font-size: 22px;
+}
