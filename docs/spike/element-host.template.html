@@ -56,8 +56,11 @@
   <div id="status" class="status">Loading bundle…</div>
   <reports-dashboard></reports-dashboard>
 
-  <script src="./polyfills-POLYFILLS_HASH.js"></script>
-  <script src="./main-MAIN_HASH.js"></script>
+  <!-- Angular 17's application builder emits ES modules — type=module is required.
+       Loading these as classic scripts breaks zone.js with
+       "Class constructor cannot be invoked without 'new'". -->
+  <script type="module" src="./polyfills-POLYFILLS_HASH.js"></script>
+  <script type="module" src="./main-MAIN_HASH.js"></script>
   <script>
     (function checkRegistered() {
       var statusEl = document.getElementById('status');

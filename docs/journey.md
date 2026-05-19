@@ -99,6 +99,31 @@ Steps 4 and 5 of the build order. The React host's `ReportsRemote.tsx` will:
 
 The whole point of the spike was to confirm that step 3 is uneventful, and it is.
 
+### Gotcha that cost ten minutes: `type="module"`
+
+The Angular 17 application builder emits ES modules. If you load them with plain
+`<script src="...">`, the browser parses them as classic scripts, and zone.js
+explodes in `scheduleMicroTask` with:
+
+```
+Uncaught TypeError: ce[T] is not a function
+Uncaught TypeError: Class constructor Ke cannot be invoked without 'new'
+```
+
+That second error is the giveaway — ESM class syntax interpreted as a classic
+script. Angular's own emitted `index.html` already uses `type="module"`; any
+hand-written host page that loads the same bundles must do the same:
+
+```html
+<script type="module" src="./polyfills-XXXX.js"></script>
+<script type="module" src="./main-XXXX.js"></script>
+```
+
+Worth pinning in the React-host integration plan: when `ReportsRemote.tsx` injects
+the bundle via dynamic `import()` (the MF path), the loader treats it as ESM
+automatically and this gotcha goes away. The risk is anyone who tries to load it
+via plain `<script>` injection later.
+
 ### What we did *not* test in the spike
 
 - **Cross-origin loading.** The spike serves bundle and host page from the same origin.
