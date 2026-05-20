@@ -103,9 +103,9 @@ export class ReportsDashboardComponent {
   readonly weekLabel = 'Week of May 13 – May 19, 2026';
 
   stats = signal<Stat[]>([
-    { title: 'Revenue this week', value: '$12,840', delta: '+8.2%',   positive: true,  bars: [4, 6, 5, 8, 7, 9, 12] },
-    { title: 'No-show rate',      value: '3.4%',    delta: '-0.6 pp', positive: true,  bars: [6, 5, 5, 4, 5, 4, 3]  },
-    { title: 'Top staff',         value: 'Casey',   delta: '92% util',positive: true,  bars: [7, 8, 9, 8, 9, 10, 9] },
-    { title: 'Avg ticket',        value: '$68.40',  delta: '+4.1%',   positive: true,  bars: [5, 6, 6, 7, 6, 8, 7]  },
+    { title: 'Revenue this week', value: '$13,420', delta: '+12.7%',  positive: true,  bars: [3, 5, 6, 7, 9, 11, 14] },
+    { title: 'No-show rate',      value: '2.9%',    delta: '-1.1 pp', positive: true,  bars: [6, 5, 5, 4, 5, 4, 3]   },
+    { title: 'Top staff',         value: 'Alex',    delta: '94% util',positive: true,  bars: [7, 8, 9, 8, 9, 10, 11] },
+    { title: 'Avg ticket',        value: '$71.20',  delta: '+8.2%',   positive: true,  bars: [5, 6, 6, 7, 6, 8, 7]   },
   ]);
 }
