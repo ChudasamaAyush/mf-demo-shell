@@ -1,7 +1,10 @@
 # Builds and deploys apps/calendar-remote to its Azure Static Web App.
 #
-# Required pipeline secret variable:
-#   CALENDAR_SWA_TOKEN     deployment token from the Azure portal
+# Required pipeline variables:
+#   CALENDAR_SWA_TOKEN              (secret) deployment token from the Azure portal
+#   PUBLIC_CALENDAR_REMOTE_URL      (plain)  this SWA's own URL — baked into the
+#                                            manifest's publicPath so chunks load
+#                                            cross-origin without 404s
 
 trigger:
   branches:
@@ -37,6 +40,8 @@ steps:
 
   - script: pnpm --filter calendar-remote build
     displayName: Build calendar-remote
+    env:
+      PUBLIC_CALENDAR_REMOTE_URL: $(PUBLIC_CALENDAR_REMOTE_URL)
 
   - task: AzureStaticWebApp@0
     inputs:
