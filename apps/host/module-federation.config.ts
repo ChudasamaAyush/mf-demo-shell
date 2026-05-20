@@ -1,7 +1,13 @@
 import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin';
 
-// Local dev defaults; pipeline sets PUBLIC_CALENDAR_REMOTE_URL to the prod SWA hostname.
-const CALENDAR_BASE = process.env.PUBLIC_CALENDAR_REMOTE_URL ?? 'http://localhost:3001';
+function normalize(url: string): string {
+  if (/^https?:\/\//i.test(url)) return url.replace(/\/+$/, '');
+  return `https://${url.replace(/\/+$/, '')}`;
+}
+
+const CALENDAR_BASE = normalize(
+  process.env.PUBLIC_CALENDAR_REMOTE_URL ?? 'http://localhost:3001',
+);
 
 export default createModuleFederationConfig({
   name: 'host',

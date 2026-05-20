@@ -3,8 +3,14 @@ import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
 import mfConfig from './module-federation.config';
 
-const REPORTS_REMOTE_URL =
-  process.env.PUBLIC_REPORTS_REMOTE_URL ?? 'http://localhost:3002';
+function normalizeUrl(url: string): string {
+  if (/^https?:\/\//i.test(url)) return url.replace(/\/+$/, '');
+  return `https://${url.replace(/\/+$/, '')}`;
+}
+
+const REPORTS_REMOTE_URL = normalizeUrl(
+  process.env.PUBLIC_REPORTS_REMOTE_URL ?? 'http://localhost:3002',
+);
 
 export default defineConfig({
   plugins: [pluginReact(), pluginModuleFederation(mfConfig)],
