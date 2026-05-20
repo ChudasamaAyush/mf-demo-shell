@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/static/*",
+      "/*.{js,css,json,ico,png,svg,jpg,jpeg,gif,webp,woff,woff2,ttf,map}"
+    ]
+  },
+  "routes": [
+    {
+      "route": "/index.html",
+      "headers": {
+        "Cache-Control": "no-store"
+      }
+    }
+  ]
+}

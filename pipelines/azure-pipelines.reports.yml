@@ -1,0 +1,49 @@
+# Builds and deploys apps/reports-remote to its Azure Static Web App.
+#
+# Required pipeline secret variable:
+#   REPORTS_SWA_TOKEN     deployment token from the Azure portal
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - apps/reports-remote/**
+      - packages/contracts/**
+      - packages/design-tokens/**
+      - pipelines/azure-pipelines.reports.yml
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: '11.1.3'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(NODE_VERSION)
+    displayName: Install Node
+
+  - script: npm install -g pnpm@$(PNPM_VERSION)
+    displayName: Install pnpm
+
+  - script: pnpm install --frozen-lockfile
+    displayName: Install workspace dependencies
+
+  - script: pnpm --filter reports-remote build
+    displayName: Build reports-remote
+
+  - task: AzureStaticWebApp@0
+    inputs:
+      # Angular 17's application builder emits to dist/<project>/browser
+      app_location: 'apps/reports-remote/dist/reports-remote/browser'
+      skip_app_build: true
+      skip_api_build: true
+    env:
+      azure_static_web_apps_api_token: $(REPORTS_SWA_TOKEN)
+    displayName: Deploy to Azure Static Web Apps

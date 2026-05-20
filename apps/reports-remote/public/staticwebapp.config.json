@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+  "routes": [
+    {
+      "route": "/main.js",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/polyfills.js",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
+  ],
+  "globalHeaders": {
+    "Access-Control-Allow-Origin": "*"
+  }
+}

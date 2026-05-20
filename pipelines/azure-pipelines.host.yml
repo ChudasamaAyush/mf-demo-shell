@@ -1,0 +1,62 @@
+# Builds and deploys apps/host to its Azure Static Web App.
+#
+# Triggers only on changes that can affect the host bundle. Calendar and reports
+# touching their own folders does NOT rebuild this app — that's the whole point
+# of the independent-deploy demo.
+#
+# Required pipeline secret variables (set in Azure DevOps → Pipelines → this
+# pipeline → Variables, marked "Keep this value secret"):
+#   HOST_SWA_TOKEN                 deployment token from the Azure portal
+#   PUBLIC_CALENDAR_REMOTE_URL     e.g. https://witty-river-02c1eea10.7.azurestaticapps.net
+#   PUBLIC_REPORTS_REMOTE_URL      e.g. https://lively-flower-0bdc24110.7.azurestaticapps.net
+#
+# The two PUBLIC_* values are NOT secrets per se — feel free to keep them as
+# plain pipeline variables. They get baked into the host bundle at build time.
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - apps/host/**
+      - packages/contracts/**
+      - packages/design-tokens/**
+      - pipelines/azure-pipelines.host.yml
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - package.json
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: '11.1.3'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(NODE_VERSION)
+    displayName: Install Node
+
+  - script: npm install -g pnpm@$(PNPM_VERSION)
+    displayName: Install pnpm
+
+  - script: pnpm install --frozen-lockfile
+    displayName: Install workspace dependencies
+
+  - script: pnpm --filter host build
+    displayName: Build host
+    env:
+      PUBLIC_CALENDAR_REMOTE_URL: $(PUBLIC_CALENDAR_REMOTE_URL)
+      PUBLIC_REPORTS_REMOTE_URL: $(PUBLIC_REPORTS_REMOTE_URL)
+
+  - task: AzureStaticWebApp@0
+    inputs:
+      app_location: 'apps/host/dist'
+      skip_app_build: true
+      skip_api_build: true
+    env:
+      azure_static_web_apps_api_token: $(HOST_SWA_TOKEN)
+    displayName: Deploy to Azure Static Web Apps

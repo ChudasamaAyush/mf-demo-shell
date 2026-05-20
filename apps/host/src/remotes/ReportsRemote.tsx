@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 
+// process.env.PUBLIC_REPORTS_REMOTE_URL is replaced by Rsbuild's source.define
+// at build time; the runtime window override is left as an escape hatch.
+declare const process: { env: { PUBLIC_REPORTS_REMOTE_URL?: string } };
+
 const REPORTS_REMOTE_URL =
   (typeof window !== 'undefined' && (window as any).__REPORTS_REMOTE_URL__) ||
+  process.env.PUBLIC_REPORTS_REMOTE_URL ||
   'http://localhost:3002';
 
 const REPORTS_BUNDLES = ['polyfills.js', 'main.js'];

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+  "routes": [
+    {
+      "route": "/mf-manifest.json",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/remoteEntry.js",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
+  ],
+  "globalHeaders": {
+    "Access-Control-Allow-Origin": "*"
+  }
+}

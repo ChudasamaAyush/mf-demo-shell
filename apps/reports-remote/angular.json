@@ -26,7 +26,12 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": ""
+              }
             ],
             "styles": [
               "@mf-demo/design-tokens/tokens.css",
@@ -48,7 +53,7 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "media"
             },
             "development": {
               "optimization": false,
@@ -89,7 +94,12 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": ""
+              }
             ],
             "styles": [
               "@mf-demo/design-tokens/tokens.css",
