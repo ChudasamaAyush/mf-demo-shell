@@ -11,6 +11,11 @@ build/
 # auto-generated MF type artifacts (pulled from remotes at dev/build time)
 @mf-types/
 
+# Playwright artifacts
+tests/integration/test-results/
+tests/integration/results/
+tests/integration/playwright-report/
+
 # misc
 .DS_Store
 *.log

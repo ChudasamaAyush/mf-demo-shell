@@ -18,6 +18,7 @@ values are not secrets and can be plain variables.
 | `REPORTS_SWA_TOKEN`            | reports pipeline    | Azure portal → `mf-demo-reports` SWA → Manage deployment token |
 | `PUBLIC_CALENDAR_REMOTE_URL`   | host + calendar pipelines | The Calendar SWA's *defaultHostname* with `https://` prefix. The host uses it to find the calendar; the calendar uses it as its own assetPrefix so MF-manifest URLs are absolute. |
 | `PUBLIC_REPORTS_REMOTE_URL`    | host pipeline       | The Reports SWA's *defaultHostname* with `https://` prefix  |
+| `PUBLIC_HOST_URL`              | host pipeline       | The Host SWA's *defaultHostname* with `https://` prefix. Used by the post-deploy Playwright smoke test that runs against the live deployed host. |
 
 ## URLs (this deployment)
 

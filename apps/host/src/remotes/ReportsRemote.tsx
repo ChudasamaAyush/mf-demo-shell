@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-// process.env.PUBLIC_REPORTS_REMOTE_URL is replaced by Rsbuild's source.define
-// at build time; the runtime window override is left as an escape hatch.
 declare const process: { env: { PUBLIC_REPORTS_REMOTE_URL?: string } };
 
 const REPORTS_REMOTE_URL =
@@ -10,10 +8,7 @@ const REPORTS_REMOTE_URL =
   'http://localhost:3002';
 
 const REPORTS_BUNDLES = ['polyfills.js', 'main.js'];
-
 const ELEMENT_TAG = 'reports-dashboard';
-
-type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 
 let loadPromise: Promise<void> | null = null;
 
@@ -44,9 +39,7 @@ function injectScript(src: string): Promise<void> {
 }
 
 function loadReportsBundle(): Promise<void> {
-  if (customElements.get(ELEMENT_TAG)) {
-    return Promise.resolve();
-  }
+  if (customElements.get(ELEMENT_TAG)) return Promise.resolve();
   if (!loadPromise) {
     loadPromise = Promise.all(
       REPORTS_BUNDLES.map((b) => injectScript(`${REPORTS_REMOTE_URL}/${b}`)),
@@ -62,40 +55,32 @@ function loadReportsBundle(): Promise<void> {
 }
 
 export function ReportsRemote() {
-  const [state, setState] = useState<LoadState>(() =>
-    customElements.get(ELEMENT_TAG) ? 'ready' : 'idle',
+  const [ready, setReady] = useState(
+    () => typeof customElements !== 'undefined' && !!customElements.get(ELEMENT_TAG),
   );
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (state !== 'idle') return;
     let cancelled = false;
-    setState('loading');
     loadReportsBundle()
-      .then(() => { if (!cancelled) setState('ready'); })
-      .catch((err) => {
-        if (cancelled) return;
-        setError(err);
-        setState('error');
-      });
+      .then(() => { if (!cancelled) setReady(true); })
+      .catch((err) => { if (!cancelled) setError(err); });
     return () => { cancelled = true; };
-  }, [state]);
+  }, []);
 
-  if (state === 'error') {
+  if (error) {
     return (
       <div className="placeholder">
         Reports remote failed to load from <code>{REPORTS_REMOTE_URL}</code>.
         Is the Angular dev server running on port 3002?
         <pre style={{ marginTop: 8, fontSize: 12, whiteSpace: 'pre-wrap' }}>
-          {error?.message}
+          {error.message}
         </pre>
       </div>
     );
   }
 
-  if (state !== 'ready') {
-    return <div className="placeholder">Loading reports…</div>;
-  }
+  if (!ready) return <div className="placeholder">Loading reports…</div>;
 
   return <reports-dashboard />;
 }

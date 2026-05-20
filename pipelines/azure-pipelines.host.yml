@@ -1,17 +1,17 @@
-# Builds and deploys apps/host to its Azure Static Web App.
+# Builds and deploys apps/host to its Azure Static Web App, then runs the
+# Playwright integration spec against the deployed URLs.
 #
 # Triggers only on changes that can affect the host bundle. Calendar and reports
 # touching their own folders does NOT rebuild this app — that's the whole point
 # of the independent-deploy demo.
 #
-# Required pipeline secret variables (set in Azure DevOps → Pipelines → this
-# pipeline → Variables, marked "Keep this value secret"):
-#   HOST_SWA_TOKEN                 deployment token from the Azure portal
-#   PUBLIC_CALENDAR_REMOTE_URL     e.g. https://witty-river-02c1eea10.7.azurestaticapps.net
-#   PUBLIC_REPORTS_REMOTE_URL      e.g. https://lively-flower-0bdc24110.7.azurestaticapps.net
-#
-# The two PUBLIC_* values are NOT secrets per se — feel free to keep them as
-# plain pipeline variables. They get baked into the host bundle at build time.
+# Required pipeline variables (set in Azure DevOps → Pipelines → this
+# pipeline → Variables; mark *_TOKEN as "Keep this value secret"):
+#   HOST_SWA_TOKEN                 (secret) deployment token from the Azure portal
+#   PUBLIC_CALENDAR_REMOTE_URL     (plain)  e.g. https://witty-river-02c1eea10.7.azurestaticapps.net
+#   PUBLIC_REPORTS_REMOTE_URL      (plain)  e.g. https://lively-flower-0bdc24110.7.azurestaticapps.net
+#   PUBLIC_HOST_URL                (plain)  e.g. https://nice-flower-030343610.7.azurestaticapps.net
+#                                           (Playwright runs against this after deploy.)
 
 trigger:
   branches:
@@ -22,6 +22,7 @@ trigger:
       - apps/host/**
       - packages/contracts/**
       - packages/design-tokens/**
+      - tests/integration/**
       - pipelines/azure-pipelines.host.yml
       - pnpm-lock.yaml
       - pnpm-workspace.yaml
@@ -60,3 +61,24 @@ steps:
     env:
       azure_static_web_apps_api_token: $(HOST_SWA_TOKEN)
     displayName: Deploy to Azure Static Web Apps
+
+  # Smoke test against the deployed host. Proves MF + Angular Elements compose
+  # end-to-end on the real infrastructure, not just locally. Spec section 9:
+  # "This is the test that proves MF actually works end-to-end."
+  - script: pnpm --filter '@mf-demo/integration-tests' exec playwright install --with-deps chromium
+    displayName: Install Playwright Chromium
+
+  - script: pnpm --filter '@mf-demo/integration-tests' test
+    displayName: Playwright smoke against deployed host
+    env:
+      PLAYWRIGHT_BASE_URL: $(PUBLIC_HOST_URL)
+      CI: 'true'
+
+  - task: PublishTestResults@2
+    condition: always()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'tests/integration/results/junit.xml'
+      failTaskOnFailedTests: true
+      testRunTitle: 'Integration (deployed host)'
+    displayName: Publish Playwright results
