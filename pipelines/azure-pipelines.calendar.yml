@@ -20,7 +20,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  NODE_VERSION: '20.x'
+  NODE_VERSION: '22.x'
   PNPM_VERSION: '11.1.3'
 
 steps:
