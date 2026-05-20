@@ -8,7 +8,7 @@ export function HomePage() {
     <section className="home">
       <div className="home-hero">
         <span className="home-pill">Cross-framework Module Federation</span>
-        <h1>Module Federation Demo Shell</h1>
+        <h1>Module Federation Shell</h1>
         <p>
           React host loading a React Calendar remote (via MF) and an Angular Reports
           remote (via Angular Elements). Three apps, three pipelines, three independent
